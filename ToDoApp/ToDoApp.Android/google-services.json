@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "536082246298",
+    "firebase_url": "https://pia-moviles-41ca5-default-rtdb.firebaseio.com",
+    "project_id": "pia-moviles-41ca5",
+    "storage_bucket": "pia-moviles-41ca5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536082246298:android:316161b8b314215b4d8d23",
+        "android_client_info": {
+          "package_name": "com.reminmax.todoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhfAun66388Qj4ixsHEv0NW8Huk2oA9j4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
