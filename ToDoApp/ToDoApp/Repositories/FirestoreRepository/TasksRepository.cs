@@ -103,19 +103,34 @@ namespace ToDoApp.Repositories.FirestoreRepository
         {
             try
             {
-                await CrossCloudFirestore.Current
-                    .Instance
-                    .Collection(_collectionPath)
-                    .AddAsync(model);
+                var addTask = Task.Run(async () =>
+                {
+                    await CrossCloudFirestore.Current
+                        .Instance
+                        .Collection(_collectionPath)
+                        .AddAsync(model);
+                });
 
-                return true;
+                var completedTask = await Task.WhenAny(addTask, Task.Delay(TimeSpan.FromSeconds(3))); // Espera un máximo de 3 segundos
+
+                if (completedTask == addTask)
+                {
+                    // La tarea de agregar se completó correctamente
+                    return false;
+                }
+                else
+                {
+                    // La tarea de agregar se canceló después del tiempo límite
+                    // Puedes manejar esto según tus necesidades (p. ej., mostrar un mensaje al usuario)
+                    return true;
+                }
             }
             catch (Exception ex)
             {
                 AnalyticsService.TrackError(ex, new Dictionary<string, string>
-                {
-                    { "Method", "TaskRepository.Add()" }
-                });
+        {
+            { "Method", "TaskRepository.Add()" }
+        });
 
                 return false;
             }

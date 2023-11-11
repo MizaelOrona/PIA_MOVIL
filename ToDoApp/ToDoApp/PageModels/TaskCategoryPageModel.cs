@@ -97,9 +97,14 @@ namespace ToDoApp.PageModels
 
                 bool wasAdded = await _categoriesRepository.Add(taskCategory);
                 if (wasAdded)
+                {
+                    await CoreMethods.DisplayAlert("Éxito", "La categoria ha sido creada exitosamente", "OK");
                     await CoreMethods.PopPageModel();
+                }
+
+
                 else
-                    await CoreMethods.DisplayAlert("Error", ConstantValues.GeneralError, "OK");
+                    await CoreMethods.PopPageModel();
             }
             catch (Exception ex)
             {

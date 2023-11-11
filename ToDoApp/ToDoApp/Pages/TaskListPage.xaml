@@ -251,12 +251,13 @@
                                                 <StackLayout Orientation="Horizontal"
                                                              Grid.Column="1"
                                                              Grid.Row="2">
-                                                <Label Text="{x:Static helpers:FontAwesomeIcons.Clock}"
+                                                <Label>
+                                                    <!--Text="{x:Static helpers:FontAwesomeIcons.Clock}"
                                                            FontFamily="FontAwesomeRegular"
                                                            FontSize="16"
                                                            Margin="16,0,0,10"
                                                            HorizontalOptions="Start"
-                                                           VerticalOptions="Center">
+                                                           VerticalOptions="Center">-->
                                                     <VisualStateManager.VisualStateGroups>
                                                         <VisualStateGroup>
                                                             <VisualState x:Name="normal">
@@ -278,12 +279,13 @@
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>                                                    
                                                 </Label>
-                                                <Label Text="{Binding TimeAsString}"
+                                                <Label>
+                                                    <!--Text="{Binding TimeAsString}"
                                                            FontFamily="OpenSansRegular"
                                                            FontSize="{StaticResource Body1FontSize}"
                                                            Margin="2,0,0,10"
                                                            HorizontalOptions="Start"
-                                                           VerticalOptions="Center">
+                                                           VerticalOptions="Center">-->
                                                     <VisualStateManager.VisualStateGroups>
                                                         <VisualStateGroup>
                                                             <VisualState x:Name="normal">

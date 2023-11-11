@@ -34,7 +34,7 @@ namespace ToDoApp.PageModels
         private readonly IFirestoreRepository<TaskCategoryModel> _taskCategoryRepository;
         private readonly IFirestoreRepository<TaskModel> _taskRepository;
 
-        public TaskPageModel(IFirestoreRepository<TaskModel> taskRepository, IFirestoreRepository<TaskCategoryModel> categoriesRepository, 
+        public TaskPageModel(IFirestoreRepository<TaskModel> taskRepository, IFirestoreRepository<TaskCategoryModel> categoriesRepository,
             IAnalyticsService analyticsService) : base(analyticsService)
         {
             _taskRepository = taskRepository;
@@ -67,7 +67,7 @@ namespace ToDoApp.PageModels
         public ValidatableObject<string> Name { get; set; }
         public ValidatableObject<string> Notes { get; set; }
         public ValidatableObject<DateTime> Date { get; set; }
-        public ValidatableObject<TimeSpan> Time { get; set; }
+        //public ValidatableObject<TimeSpan> Time { get; set; }
         public DateTime MinDate { get; } = DateTime.Now;
 
         public TaskCategoryModel SelectedCategoryItem
@@ -107,7 +107,7 @@ namespace ToDoApp.PageModels
                 Date.Value = DateTime.Parse(taskModel.Date, CultureInfo.CurrentCulture.DateTimeFormat);
 
                 var dateTime = taskModel.Time.ToDateTime();
-                Time.Value = new TimeSpan(dateTime.Hour, dateTime.Minute, dateTime.Second);
+                //Time.Value = new TimeSpan(dateTime.Hour, dateTime.Minute, dateTime.Second);
 
                 // save task category Id to make it active
                 _taskCategoryId = taskModel.CategoryId;
@@ -156,7 +156,7 @@ namespace ToDoApp.PageModels
                         Notes = Notes.Value,
                         UserId = userId,
                         Date = Date.Value.ToString("dd/MM/yyyy"),
-                        Time = new Timestamp(new DateTime(Time.Value.Ticks)),
+                        //Time = new Timestamp(new DateTime(Time.Value.Ticks)),
                         Id = _taskId,
 
                         // Category
@@ -193,7 +193,7 @@ namespace ToDoApp.PageModels
                         Notes = Notes.Value,
                         UserId = userId,
                         Date = Date.Value.ToString("dd/MM/yyyy"),
-                        Time = new Timestamp(new DateTime(Time.Value.Ticks)),
+                        //Time = new Timestamp(new DateTime(Time.Value.Ticks)),
 
                         // Category
                         CategoryId = SelectedCategoryItem?.Id,
@@ -204,7 +204,7 @@ namespace ToDoApp.PageModels
                     bool wasAdded = await _taskRepository.Add(model);
                     if (wasAdded)
                     {
-                        AnalyticsService.TrackEvent("New task created", 
+                        AnalyticsService.TrackEvent("New task created",
                             new Dictionary<string, string>
                             {
                                 { "Name", Name.Value },
@@ -212,6 +212,7 @@ namespace ToDoApp.PageModels
                                 { "CategoryName", SelectedCategoryItem?.Name }
                             });
 
+                        await CoreMethods.DisplayAlert("Éxito", "La tarea ha sido creada exitosamente", "OK");
                         await CoreMethods.PopPageModel();
                     }
                     else
@@ -231,6 +232,7 @@ namespace ToDoApp.PageModels
             }
             finally
             {
+
                 MainState = LayoutState.None;
             }
         }
@@ -319,12 +321,12 @@ namespace ToDoApp.PageModels
             Name = new ValidatableObject<string>();
             Notes = new ValidatableObject<string>();
             Date = new ValidatableObject<DateTime>();
-            Time = new ValidatableObject<TimeSpan>();
+            //Time = new ValidatableObject<TimeSpan>();
 
-            Name.Validations.Add(new IsNotNullOrEmptyRule<string> {ValidationMessage = "A name is required."});
-            Notes.Validations.Add(new IsNotNullOrEmptyRule<string> {ValidationMessage = "Notes is required."});
-            Date.Validations.Add(new IsNotNullOrEmptyRule<DateTime> {ValidationMessage = "A date is required."});
-            Time.Validations.Add(new IsNotNullOrEmptyRule<TimeSpan> {ValidationMessage = "A time is required."});
+            Name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A name is required." });
+            Notes.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Notes is required." });
+            Date.Validations.Add(new IsNotNullOrEmptyRule<DateTime> { ValidationMessage = "A date is required." });
+            //Time.Validations.Add(new IsNotNullOrEmptyRule<TimeSpan> {ValidationMessage = "A time is required."});
         }
 
         private bool AreFieldsValid()
@@ -332,9 +334,9 @@ namespace ToDoApp.PageModels
             bool isNameValid = Name.Validate();
             bool isNotesValid = Notes.Validate();
             bool isDateValid = Date.Validate();
-            bool isTimeValid = Time.Validate();
+            //bool isTimeValid = Time.Validate();
 
-            return isNameValid && isNotesValid && isDateValid && isTimeValid;
+            return isNameValid && isNotesValid && isDateValid /*&& isTimeValid*/;
         }
     }
 }

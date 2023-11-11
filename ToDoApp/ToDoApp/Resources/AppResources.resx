@@ -211,10 +211,10 @@
     <value>Nombre</value>
   </data>
   <data name="SelectColor" xml:space="preserve">
-    <value>Seleccia color</value>
+    <value>Selecciona color</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Guardado</value>
+    <value>Guardar</value>
   </data>
   <data name="AddNewCategory" xml:space="preserve">
     <value>Agregar nueva categoria</value>

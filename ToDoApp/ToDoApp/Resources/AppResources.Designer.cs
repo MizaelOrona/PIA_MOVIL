@@ -367,7 +367,7 @@ namespace ToDoApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Guardado.
+        ///   Busca una cadena traducida similar a Guardar.
         /// </summary>
         internal static string Save {
             get {
@@ -385,7 +385,7 @@ namespace ToDoApp.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Seleccia color.
+        ///   Busca una cadena traducida similar a Selecciona color.
         /// </summary>
         internal static string SelectColor {
             get {

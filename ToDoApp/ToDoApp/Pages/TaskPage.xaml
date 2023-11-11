@@ -170,7 +170,7 @@
                     </StackLayout>
 
                     <!--Time-->
-                    <StackLayout Style="{StaticResource EntryDataStackLayoutStyle}"
+                    <!--<StackLayout Style="{StaticResource EntryDataStackLayoutStyle}"
                                  Grid.Column="1">
                         <Label Text="{xct:Translate Time}"
                                Style="{StaticResource EntryHeaderLabelStyle}"></Label>
@@ -194,7 +194,7 @@
                         <Label IsVisible="{Binding Time.IsValid, Converter={xct:InvertedBoolConverter}}"
                                Text="{Binding Time.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                TextColor="{StaticResource FailColor}" />
-                    </StackLayout>
+                    </StackLayout>-->
 
                 </Grid>
                 
